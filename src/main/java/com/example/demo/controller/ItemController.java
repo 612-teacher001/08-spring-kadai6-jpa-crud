@@ -19,6 +19,14 @@ public class ItemController {
 	@Autowired
 	ItemRepository itemRepository;
 	
+	@PostMapping("/items/{id}/delete")
+	public String delete(@PathVariable int id) {
+		// パスパラメータをもとに削除を実行
+		itemRepository.deleteById(id);
+		// 画面遷移
+		return "redirect:/items";
+	}
+	
 	/**
 	 * 商品を更新する
 	 * @param categoryId カテゴリID

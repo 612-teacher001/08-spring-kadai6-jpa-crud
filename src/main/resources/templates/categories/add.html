@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title>カテゴリ一覧</title>
+	<title>カテゴリ登録</title>
 </head>
 <body>
-	<h1>カテゴリ一覧</h1>
+	<h1>カテゴリ登録</h1>
 	<form action="/categories">
 	<table border="1">
 		<tr>
@@ -15,7 +15,7 @@
 			</td>
 		</tr>
 	</table>
-	<button th:formaction="/categories/add" th:formmethod="post">登録</button>
+	<button formaction="/categories/add" formmethod="post">登録</button>
 	</form>
 </body>
 </html>

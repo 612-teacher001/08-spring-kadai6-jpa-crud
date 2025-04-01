@@ -6,9 +6,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor  // デフォルトコンストラクタ（引数なし）
+@AllArgsConstructor // 全フィールドを引数に持つコンストラクタ
 @Entity
 @Table(name = "categories")
 public class Category {
@@ -16,4 +22,13 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
+	
+	/**
+	 * コンストラクタ
+	 * @param name
+	 */
+	public Category(String name) {
+		this.name = name;
+	}
+
 }

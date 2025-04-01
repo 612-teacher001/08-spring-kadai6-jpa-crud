@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>カテゴリ一覧</title>
+</head>
+<body>
+	<h1>カテゴリ一覧</h1>
+	<form action="/categories">
+	<table border="1">
+		<tr>
+			<th>カテゴリ名</th>
+			<td>
+				<input type="text" name="name" />
+			</td>
+		</tr>
+	</table>
+	<button th:formaction="/categories/add" th:formmethod="post">登録</button>
+	</form>
+</body>
+</html>

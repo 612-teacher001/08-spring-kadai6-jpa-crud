@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,6 +19,34 @@ public class CategoryController {
 	@Autowired
 	CategoryRepository categoryRepository;
 
+	@PostMapping("/categories/{id}/edit")
+	public String update(@PathVariable int id,
+						 @RequestParam(defaultValue = "") String name) {
+		// 更新対象のカテゴリクラスをインスタンス化
+		Category category = new Category(id, name);
+		// カテゴリインスタンスをcategoriesテーブルに再登録
+		categoryRepository.save(category);
+		// 画面遷移
+		return "redirect:/categories";
+	}
+	
+	/**
+	 * カテゴリ更新画面表示
+	 * @param id    更新対象のカテゴリのカテゴリID
+	 * @param model 遷移先画面にデータを引き継ぐためのスコープ
+	 * @return カテゴリ更新画面のThymeleafテンプレート名
+	 */
+	@GetMapping("/categories/{id}/edit")
+	public String edit(@PathVariable int id,
+					   Model model) {
+		// パスパラメータをもとにcategoriesテーブルから更新するカテゴリを取得
+		Category category = categoryRepository.findById(id).get();
+		// 取得したカテゴリをスコープに登録
+		model.addAttribute("category", category);
+		// 画面遷移
+		return "categories/edit";
+	}
+	
 	/**
 	 * カテゴリを新規登録する
 	 * @param name 登録するカテゴリ名

@@ -10,10 +10,16 @@
 		<tr>
 			<th>カテゴリID</th>
 			<th>カテゴリ名</th>
+			<th>更新</th>
 		</tr>
 		<tr th:each="category:${categories}">
 			<td th:text="${category.id}"></td>
 			<td th:text="${category.name}"></td>
+			<td>
+				<form th:action="'/categories/' + ${category.id} + '/edit'" method="get">
+					<button>更新</button>
+				</form>
+			</td>
 		</tr>
 	</table>
 	<a href="/categories/add">新規登録</a>

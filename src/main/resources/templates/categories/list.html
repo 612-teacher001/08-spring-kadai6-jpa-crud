@@ -11,6 +11,7 @@
 			<th>カテゴリID</th>
 			<th>カテゴリ名</th>
 			<th>更新</th>
+			<th>削除</th>
 		</tr>
 		<tr th:each="category:${categories}">
 			<td th:text="${category.id}"></td>
@@ -18,6 +19,11 @@
 			<td>
 				<form th:action="'/categories/' + ${category.id} + '/edit'" method="get">
 					<button>更新</button>
+				</form>
+			</td>
+			<td>
+				<form th:action="'/categories/' + ${category.id} + '/delete'" method="get">
+					<button>削除</button>
 				</form>
 			</td>
 		</tr>

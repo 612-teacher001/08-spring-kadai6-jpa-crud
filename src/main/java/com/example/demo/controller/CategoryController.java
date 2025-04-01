@@ -19,6 +19,25 @@ public class CategoryController {
 	@Autowired
 	CategoryRepository categoryRepository;
 
+	/**
+	 * カテゴリを削除する
+	 * @param id 削除するカテゴリのカテゴリID
+	 * @return カテゴリ一覧画面のThymeleafテンプレート名
+	 */
+	@GetMapping("/categories/{id}/delete")
+	public String delete(@PathVariable int id) {
+		// パスパラメータをもとにカテゴリを削除
+		categoryRepository.deleteById(id);
+		// 画面遷移
+		return "redirect:/categories";
+	}
+	
+	/**
+	 * カテゴリを更新する
+	 * @param id   更新対象のカテゴリのカテゴリID
+	 * @param name 更新対象のカテゴリのカテゴリ名
+	 * @return カテゴリ一覧画面のThymeleafテンプレート名
+	 */
 	@PostMapping("/categories/{id}/edit")
 	public String update(@PathVariable int id,
 						 @RequestParam(defaultValue = "") String name) {

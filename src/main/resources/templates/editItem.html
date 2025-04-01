@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title>商品登録</title>
+	<title>商品更新</title>
 </head>
 <body>
-	<h1>商品登録</h1>
+	<h1>商品更新</h1>
 	<form action="/items" method="get">
 	<table border="1">
 		<tr>
@@ -31,7 +31,7 @@
 			</td>
 		</tr>
 	</table>
-	<button formaction="'/items' + ${item.id} + '/edit'" formmethod="post">更新</button>
+	<button th:formaction="'/items/' + ${item.id} + '/edit'" formmethod="post">更新</button>
 	</form>
 </body>
 </html>

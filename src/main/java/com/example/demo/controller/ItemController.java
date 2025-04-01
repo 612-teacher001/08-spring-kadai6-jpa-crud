@@ -19,6 +19,34 @@ public class ItemController {
 	@Autowired
 	ItemRepository itemRepository;
 	
+	/**
+	 * 商品を更新する
+	 * @param categoryId カテゴリID
+	 * @param name       商品名
+	 * @param price      価格
+	 * @return 商品一覧画面のThymeleafテンプレート名
+	 */
+	@PostMapping("/items/{id}/edit")
+	public String update(@PathVariable int id,
+						 @RequestParam(defaultValue = "0") Integer categoryId,
+						 @RequestParam String name,
+						 @RequestParam(defaultValue = "0") Integer price) {
+		// リクエストパラメータをもとに更新する商品をインスタンス化
+		Item item = new Item(id, categoryId, name, price);
+		
+		// 商品の更新
+		itemRepository.save(item);
+		
+		// 画面遷移
+		return "redirect:/items";
+	}
+	
+	/**
+	 * 更新画面表示
+	 * @param id    更新対象商品の商品ID
+	 * @param model 遷移先画面にデータを引き継ぐスコープ
+	 * @return 商品更新画面のThymeleafテンプレート名
+	 */
 	@GetMapping("/items/{id}/edit")
 	public String edit(@PathVariable("id") Integer id,
 					   Model model) {
@@ -32,6 +60,13 @@ public class ItemController {
 		return "editItem";
 	}
 	
+	/**
+	 * 商品を新規追加する
+	 * @param categoryId カテゴリID
+	 * @param name       商品名
+	 * @param price      価格
+	 * @return 商品一覧画面のThymeleafテンプレート名
+	 */
 	@PostMapping("/items/add")
 	public String store(@RequestParam(defaultValue = "0") Integer categoryId,
 						@RequestParam String name,
